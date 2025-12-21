@@ -263,12 +263,15 @@ File `oh-my-opencode.json` mengatur perilaku plugin Oh My OpenCode. Letakkan di 
 | `ref-mcp` | Documentation search across web & GitHub | `REF_API_KEY` (opsional) |
 
 ### Model yang Tersedia (via Antigravity)
-| Model | Deskripsi | Fitur Utama |
-|-------|-----------|-------------|
-| `gemini-3-pro-high` | Gemini 3 Pro (Antigravity) | High Reasoning Effort |
-| `claude-sonnet-4-5` | Claude Sonnet 4.5 | 16k Thinking Budget |
-| `claude-opus-4-5-thinking` | Claude Opus 4.5 | 32k Thinking Budget |
-| `gpt-5` | OpenAI Next-Gen | High Reasoning, Low Verbosity |
+| Model | Deskripsi |
+|-------|-----------|
+| `gemini-3-pro-high` | Gemini 3 Pro (Antigravity) - Rate Limit Tinggi |
+| `gemini-3-pro-low` | Gemini 3 Pro (Antigravity) - Rate Limit Standar |
+| `gemini-3-flash` | Gemini 3 Flash (Antigravity) |
+| `claude-sonnet-4-5` | Claude Sonnet 4.5 (Antigravity) |
+| `claude-sonnet-4-5-thinking` | Claude Sonnet 4.5 (Antigravity) dengan Extended Thinking |
+| `claude-opus-4-5-thinking` | Claude Opus 4.5 (Antigravity) dengan Extended Thinking |
+| `gpt-oss-120b-medium` | GPT-OSS 120B (Antigravity) |
 
 ## 🎮 Cara Menggunakan
 
@@ -278,19 +281,6 @@ Gunakan command berikut di terminal OpenCode untuk melihat daftar model yang ter
 /models
 ```
 
-### Ubah Konfigurasi Model
-Kamu bisa mengatur budget "Thinking" untuk model Claude di `opencode.json`:
-```json
-"options": {
-  "thinking": {
-    "type": "enabled",
-    "budgetTokens": 32000
-  }
-}
-```
-
-### Tips
-Jika ingin memecahkan masalah koding yang sangat sulit, pastikan menggunakan model dengan fitur **Thinking** aktif (seperti Claude Opus 4.5 atau Sonnet 4.5).
 
 
 ## ⚠️ Keamanan
