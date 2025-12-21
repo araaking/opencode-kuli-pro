@@ -130,6 +130,11 @@
       "type": "remote",
       "url": "https://websetsmcp.exa.ai/mcp?exaApiKey={env:EXA_API_KEY}",
       "enabled": true
+    },
+    "shannon-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "server-shannon-thinking@latest"],
+      "enabled": true
     }
   },
   "tools": {

@@ -60,6 +60,7 @@ Koleksi konfigurasi [OpenCode](https://opencode.ai) yang dioptimalkan untuk prod
    - *Debugging*: Binary Search, Divide and Conquer, Cause Elimination, Program Slicing
    - *Advanced*: Scientific Method, Structured Argumentation, Visual Reasoning, Metacognitive Monitoring
 5. **Atom of Thoughts**: Fokus pada dekomposisi masalah ke unit terkecil (atomik), memastikan tidak ada detail teknis krusial yang terlewatkan.
+6. **Shannon Thinking**: Metodologi pemecahan masalah sistematis Claude Shannon (Problem Definition, Mathematical Modeling, Practical Implementation).
 
 ## 📋 Prasyarat
 - [OpenCode](https://opencode.ai) terinstal.
@@ -244,6 +245,7 @@ File `oh-my-opencode.json` mengatur perilaku plugin Oh My OpenCode. Letakkan di 
 | `mcp-reasoner` | Advanced reasoning (Beam Search, MCTS, R1-Sonnet) |
 | `clear-thought` | Mental models, design patterns, debugging frameworks |
 | `atom-of-thoughts` | Decomposition-based reasoning, atomic thought units |
+| `shannon-thinking` | Claude Shannon's systematic problem-solving methodology |
 
 ### MCP Lokal (Development Tools)
 | Nama | Fungsi |
