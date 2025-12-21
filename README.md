@@ -231,6 +231,7 @@ File `oh-my-opencode.json` mengatur perilaku plugin Oh My OpenCode. Letakkan di 
 |------|--------|
 | `oh-my-opencode` | Core plugin: Sisyphus agents, background agents, LSP tools, hooks |
 | `./plugin/superpowers.js` | **Local Plugin**: Memberikan kemampuan "superpowers" & skill system pada agent |
+| `./plugin/kuli-pro-safety.js` | **Local Plugin**: Proteksi file sensitif & welcome greeting |
 | `opencode-antigravity-auth` | OAuth & Model High-End (Gemini 3, Claude 4.5, GPT-OSS) |
 | `@ramtinj95/opencode-tokenscope` | Analisis penggunaan token & estimasi biaya |
 | `opencode-skills` | Skill system untuk workflow automation |

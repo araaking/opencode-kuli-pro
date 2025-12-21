@@ -3,6 +3,7 @@
   "plugin": [
     "oh-my-opencode",
     "./plugin/superpowers.js",
+    "./plugin/kuli-pro-safety.js",
     "opencode-antigravity-auth@1.2.0",
     "@ramtinj95/opencode-tokenscope@latest",
     "opencode-skills"
