@@ -1,7 +1,8 @@
 export const KuliProSafetyPlugin = async ({ client, $ }) => {
   const state = (globalThis.__kuliProSafetyState ||= {
     startedSessions: new Set(),
-    idleNotifiedSessions: new Set()
+    idleNotifiedSessions: new Set(),
+    commandCounts: new Map()
   });
 
   const getSessionID = (event) => {
@@ -12,6 +13,48 @@ export const KuliProSafetyPlugin = async ({ client, $ }) => {
     );
   };
 
+  const SENSITIVE_FILES = [
+    'antigravity-accounts.json',
+    '.env',
+    '.env.local',
+    '.env.production',
+    'opencode.json',
+    'secrets.json',
+    'credentials.json',
+    '.npmrc',
+    '.pypirc',
+    'id_rsa',
+    'id_ed25519',
+    '.ssh/config'
+  ];
+
+  const DANGEROUS_COMMANDS = [
+    { pattern: /rm\s+-rf\s+[\/~]/, message: 'Dangerous recursive delete on system path' },
+    { pattern: />\s*\/dev\/sd[a-z]/, message: 'Direct disk write detected' },
+    { pattern: /mkfs\./, message: 'Filesystem format command detected' },
+    { pattern: /dd\s+if=.*of=\/dev/, message: 'Direct disk overwrite detected' },
+    { pattern: /chmod\s+-R\s+777\s+\//, message: 'Dangerous permission change on root' },
+    { pattern: /:(){ :\|:& };:/, message: 'Fork bomb detected' }
+  ];
+
+  const checkDangerousCommand = (command) => {
+    for (const { pattern, message } of DANGEROUS_COMMANDS) {
+      if (pattern.test(command)) {
+        return message;
+      }
+    }
+    return null;
+  };
+
+  const notify = async (title, message) => {
+    try {
+      if (process.platform === 'darwin') {
+        const script = 'display notification "' + message + '" with title "' + title + '"';
+        await $`osascript -e ${script}`;
+      }
+    } catch (e) {}
+  };
+
   return {
     event: async ({ event }) => {
       if (event.type === "session.created") {
@@ -19,7 +62,6 @@ export const KuliProSafetyPlugin = async ({ client, $ }) => {
         if (sessionID && state.startedSessions.has(sessionID)) return;
         if (sessionID) state.startedSessions.add(sessionID);
 
-        // Show welcome message in the TUI safely (avoid console.log which can corrupt UI)
         try {
           if (sessionID) {
             await client.session.prompt({
@@ -29,7 +71,7 @@ export const KuliProSafetyPlugin = async ({ client, $ }) => {
                 parts: [
                   {
                     type: "text",
-                    text: "[Kuli Pro] Mode Sakti Diaktifkan! Selamat bekerja.",
+                    text: "[Kuli Pro] Mode Sakti Diaktifkan! Selamat bekerja, Bos!",
                     synthetic: true
                   }
                 ]
@@ -38,33 +80,47 @@ export const KuliProSafetyPlugin = async ({ client, $ }) => {
           }
         } catch (e) {}
 
-        try {
-          if (process.platform === 'darwin') {
-            await $`osascript -e 'display notification "Mode Sakti Diaktifkan!" with title "OpenCode Kuli Pro"'`;
-          }
-        } catch (e) {}
+        await notify("OpenCode Kuli Pro", "Mode Sakti Diaktifkan!");
       }
-      
+
       if (event.type === "session.idle") {
         const sessionID = getSessionID(event);
         if (sessionID && state.idleNotifiedSessions.has(sessionID)) return;
         if (sessionID) state.idleNotifiedSessions.add(sessionID);
 
-        try {
-          if (process.platform === 'darwin') {
-            await $`osascript -e 'display notification "Tugas selesai, Bos!" with title "OpenCode Kuli Pro"'`;
-          }
-        } catch (e) {}
+        await notify("OpenCode Kuli Pro", "Tugas selesai, Bos!");
       }
     },
 
     "tool.execute.before": async (input) => {
       if (input.tool === "read") {
-        const path = input.args.filePath.toLowerCase();
-        const sensitiveFiles = ["antigravity-accounts.json", ".env", "opencode.json"];
-        
-        if (sensitiveFiles.some(file => path.includes(file))) {
-          throw new Error(`⚠️ AKSES DITOLAK: Agent dilarang membaca file sensitif [${path}] demi keamanan!`);
+        const filePath = input.args?.filePath?.toLowerCase() || '';
+
+        if (SENSITIVE_FILES.some(file => filePath.includes(file.toLowerCase()))) {
+          throw new Error(
+            'AKSES DITOLAK: File sensitif [' + input.args.filePath + '] dilindungi!'
+          );
+        }
+      }
+
+      if (input.tool === "bash") {
+        const command = input.args?.command || '';
+        const danger = checkDangerousCommand(command);
+
+        if (danger) {
+          throw new Error(
+            'PERINTAH BERBAHAYA DIBLOKIR: ' + danger + '\nCommand: ' + command
+          );
+        }
+      }
+
+      if (input.tool === "write" || input.tool === "edit") {
+        const filePath = input.args?.filePath?.toLowerCase() || '';
+
+        if (SENSITIVE_FILES.some(file => filePath.includes(file.toLowerCase()))) {
+          throw new Error(
+            'MODIFIKASI DITOLAK: File sensitif [' + input.args.filePath + '] dilindungi!'
+          );
         }
       }
     }
