@@ -149,3 +149,34 @@ Jangan pernah melakukan *commit* pada file `opencode.json` asli. Selalu gunakan 
 
 ## 📄 Lisensi
 MIT - [Alfian](https://github.com/alfian) & Open Source Community.
+
+---
+
+## 🧠 Arsitektur & Cara Kerja (Kuli Pro Ecosystem)
+
+Bagian ini menjelaskan bagaimana komponen-komponen canggih di dalam repo ini saling berinteraksi untuk menciptakan workflow koding yang otonom dan berkualitas tinggi.
+
+### 1. Hubungan Antar Komponen (The Core 5)
+
+| Komponen | Peran / Analogi | Deskripsi |
+| :--- | :--- | :--- |
+| **Oh My OpenCode (OMO)** | **Sistem Operasi / Infrastruktur** | Memberikan "pondasi" seperti background tasks, LSP canggih, manajemen token, dan agen utama **Sisyphus**. |
+| **OpenAgents** | **Pasukan Staf Ahli (Specialists)** | Kumpulan 100+ file `.md` yang mendefinisikan kepribadian spesifik (misal: Expert Next.js, Python Pro, Security Auditor). |
+| **Superpowers** | **Polisi SOP (Enforcer)** | Plugin yang "menjaga" agent agar tidak langsung asal koding, melainkan wajib mengecek Skill/SOP terlebih dahulu. |
+| **Skills** | **Manual Book (SOP)** | Kumpulan instruksi langkah-demi-langkah (workflow) untuk tugas tertentu (misal: cara TDD yang benar). |
+| **MCP** | **Peralatan Kerja (Tools)** | Ekstensi luar yang memberi agent "tangan" untuk melakukan hal nyata (baca DB, browsing web, kontrol browser). |
+
+### 2. Workflow "Kuli Pro" (End-to-End)
+
+Saat kamu memberikan perintah: *"Fix bug login di Next.js dan buatkan test-nya"*, inilah yang terjadi:
+
+1.  **Entry Point**: Prompt diterima oleh **Oh My OpenCode**. Sisyphus (CEO) menganalisis tugas tersebut.
+2.  **Specialist Call**: Sisyphus melihat tugas ini spesifik Next.js, maka dia memanggil **OpenAgents** `@nextjs-app-router-developer`.
+3.  **Superpowers Enforcer**: Sebelum si spesialis bekerja, plugin **Superpowers** menginterupsi: *"Cek daftar **Skills** dulu!"*.
+4.  **Skill Activation**: Agen menemukan skill `test-driven-development`. Dia sekarang bekerja mengikuti SOP TDD (Tulis test dulu -> Merah -> Koding -> Hijau).
+5.  **Tooling via MCP**: Saat menulis test, agen menggunakan **MCP** `playwright` untuk menjalankan browser dan **MCP** `next-devtools` untuk inspeksi error.
+6.  **Infrastructure Support**: Selama proses koding, **OMO** menyediakan fitur `lsp_hover` agar agen paham tipe data dan melakukan `Background Task` jika ada riset dokumen yang perlu dilakukan paralel.
+7.  **Final Quality Check**: Sisyphus memanggil agen `@code-reviewer` untuk memastikan kodingan staf tadi sudah sesuai standar sebelum melaporkan ke kamu.
+
+### 3. Kenapa Setup Ini "Wahh"?
+Karena agen kamu bukan lagi sekedar "chatbot", tapi sebuah **Tim Engineering Digital** yang punya Manager, Staf Ahli, Buku Manual, Polisi Disiplin, dan Peralatan Bengkel yang lengkap.
