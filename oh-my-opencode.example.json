@@ -3,25 +3,31 @@
   "google_auth": false,
   "agents": {
     "Sisyphus": {
-      "model": "google/claude-opus-4-5-thinking"
+      "model": "proxycli-indo-kuli/claude-opus-4-5-thinking"
     },
     "librarian": {
       "model": "opencode/glm-4.7"
     },
     "oracle": {
-      "model": "google/claude-opus-4-5-thinking"
+      "model": "proxycli-indo-kuli/claude-opus-4-5-thinking"
     },
     "frontend-ui-ux-engineer": {
-      "model": "google/gemini-3-pro-high"
+      "model": "proxycli-indo-kuli/gemini-3-pro-preview"
     },
     "document-writer": {
-      "model": "google/gemini-3-flash"
+      "model": "proxycli-indo-kuli/gemini-3-flash-preview"
     },
     "multimodal-looker": {
-      "model": "google/gemini-3-flash"
+      "model": "proxycli-indo-kuli/gemini-3-pro-image-preview"
     },
     "explore": {
       "model": "opencode/glm-4.7"
+    },
+    "vibedev-sonnet": {
+      "model": "vibedev/claude-sonnet-4-5"
+    },
+    "vibedev-gemini": {
+      "model": "vibedev/gemini-3-pro-preview"
     }
   }
 }

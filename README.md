@@ -5,9 +5,11 @@ Koleksi konfigurasi [OpenCode](https://opencode.ai) yang dioptimalkan untuk prod
 ## ✨ Fitur Utama
 - **Oh My OpenCode**: Plugin utama yang mengaktifkan semua fitur canggih (LSP, Background Tasks, Hooks).
 - **Antigravity Auth**: Akses model tier-1 (Gemini 3 Pro High, Claude 4.5) dengan rate limit tinggi via Google OAuth.
+- **VibeDevID**: Provider alternatif untuk model Claude 4.5 dan Gemini 3 via REST API proxy (mendukung *native thinking* & *variants*).
 - **TokenScope**: Analisis penggunaan token dan estimasi biaya secara real-time.
 - **Deep Research**: Integrasi penuh dengan Exa AI dan Websets.
 - **Advanced Thinking & Reasoning**: Dilengkapi dengan 6 mesin pemikiran (Thinking Engines) untuk akurasi maksimal.
+- **Skillful Engine**: Manajemen skill berbasis on-demand (lazy-loading) untuk efisiensi context window via `@zenobius/opencode-skillful`.
 
 ---
 
@@ -83,7 +85,7 @@ OMO bertindak sebagai **CEO/Manager** yang mengelola infrastruktur dan orkestras
 - [OpenCode](https://opencode.ai) terinstal.
 - Node.js (v18+) & npm.
 - Akun Google (untuk Antigravity).
-- API Keys untuk layanan remote (Exa, Context7, dll).
+- API Keys untuk layanan remote (Exa, Context7, VibeDevID, dll).
 
 ---
 
@@ -117,11 +119,19 @@ Dapatkan 100+ agent spesialis:
 curl -fsSL https://raw.githubusercontent.com/darrenhinde/OpenAgents/main/install.sh | bash -s full
 ```
 
-### 3. Autentikasi Antigravity
-1. Jalankan `opencode auth login`.
-2. Pilih **Google** -> **OAuth with Google (Antigravity)**.
-3. Tekan **Enter** saat diminta Project ID (opsional).
-4. Selesaikan proses login di browser.
+### 3. Opsi Autentikasi
+
+#### Opsi A: Menggunakan CLI Proxy (Recommended - Indo Kuli Style)
+Gunakan fork CLI Proxy yang sudah dioptimalkan untuk akses model tanpa API Key ribet.
+1.  Unduh & jalankan [CLIProxyAPI-Indo-kuli](https://github.com/araaking/CLIProxyAPI-Indo-kuli).
+2.  Pastikan proxy berjalan di `http://127.0.0.1:8318`.
+3.  Konfigurasi default sudah menggunakan provider `proxycli-indo-kuli`.
+
+#### Opsi B: Menggunakan Plugin Antigravity (Legacy)
+1.  Pastikan plugin `opencode-antigravity-auth` ditambahkan ke `opencode.json`.
+2.  Jalankan `opencode auth login`.
+3.  Pilih **Google** -> **OAuth with Google (Antigravity)**.
+4.  Selesaikan proses login di browser.
 
 ### 4. Setup Command `/tokenscope`
 Agar perintah `/tokenscope` berfungsi, buat file command:
@@ -181,6 +191,13 @@ Jalankan perintah berikut di direktori `~/.config/opencode/mcp`:
 
 ## 🛠️ Daftar Lengkap Plugin & MCP
 
+### Providers
+| Nama | Fungsi |
+|------|--------|
+| `proxycli-indo-kuli` | **Recommended**: Provider berbasis CLI Proxy (No API Key). Fork dari [CLIProxyAPI-Indo-kuli](https://github.com/araaking/CLIProxyAPI-Indo-kuli). |
+| `google` (Antigravity) | Opsi Plugin: Provider utama untuk model tier-1 via Google OAuth. |
+| `vibedev` | Provider alternatif OpenAI/Anthropic compatible dengan fitur *thinking*. |
+
 ### Plugins
 | Nama | Fungsi |
 |------|--------|
@@ -189,6 +206,7 @@ Jalankan perintah berikut di direktori `~/.config/opencode/mcp`:
 | `./plugin/kuli-pro-safety.js` | **Protector**: Memblokir akses AI ke file sensitif (.env, config). |
 | `opencode-antigravity-auth` | **Gateway**: Provider model Claude 4.5 & Gemini 3 Pro. |
 | `@ramtinj95/opencode-tokenscope` | **Analytic**: Tracking token dan biaya real-time. |
+| `@zenobius/opencode-skillful` | **Skill Engine**: Lazy-loaded skill discovery & injection (Anthropic Spec). |
 
 ### Thinking MCPs
 - **Sequential Thinking**: Berpikir urut (Anthropic).
@@ -200,6 +218,7 @@ Jalankan perintah berikut di direktori `~/.config/opencode/mcp`:
 ### Development MCPs
 - **Prisma-Local**: Database management via Prisma.
 - **Next-Devtools**: Debugging Next.js App Router.
+- **Linear**: Manajemen issue, project, dan workflow di Linear.
 - **Playwright**: Browser automation & testing.
 - **Exa**: Deep web search & code context.
 

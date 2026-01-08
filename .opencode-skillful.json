@@ -1,0 +1,11 @@
+{
+  "debug": false,
+  "basePaths": ["~/.config/opencode/skills", ".opencode/skills"],
+  "promptRenderer": "xml",
+  "modelRenderers": {
+    "claude-3-7-sonnet": "xml",
+    "claude-3-5-sonnet": "xml",
+    "gpt-4o": "json",
+    "gemini-3-pro-high": "xml"
+  }
+}
