@@ -1,416 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "proxycli-indo-kuli/gemini-3-pro-preview",
+  "model": "zai-coding-plan/glm-4.7",
   "plugin": [
     "oh-my-opencode",
     "./plugin/superpowers.js",
-    "@ramtinj95/opencode-tokenscope@latest",
+    "./plugin/ghost-pair-programmer.js",
     "@zenobius/opencode-skillful"
   ],
-  "provider": {
-    "proxycli-indo-kuli": {
-      "api": "openai",
-      "options": {
-        "apiKey": "",
-        "baseURL": "http://127.0.0.1:8318/v1"
-      },
-      "models": {
-        "claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "claude-opus-4-5-thinking": {
-          "name": "Claude Opus 4.5 Thinking",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-3-pro-preview": {
-          "name": "Gemini 3 Pro (preview)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash (preview)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-3-pro-image-preview": {
-          "name": "Gemini 3 Pro Image (preview)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-claude-opus-4-5-thinking": {
-          "name": "Claude Opus 4.5 Thinking (via Gemini proxy)",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5 (via Gemini proxy)",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-claude-sonnet-4-5-thinking": {
-          "name": "Claude Sonnet 4.5 Thinking (via Gemini proxy)",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        }
-      }
-    },
-    "google": {
-      "models": {
-        "gemini-3-pro-high": {
-          "name": "Gemini 3 Pro High (Antigravity)",
-          "limit": {
-            "context": 1048576,
-            "output": 65535
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-3-pro-low": {
-          "name": "Gemini 3 Pro Low (Antigravity)",
-          "limit": {
-            "context": 1048576,
-            "output": 65535
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-3-flash": {
-          "name": "Gemini 3 Flash (Antigravity)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5 (Antigravity)",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "claude-sonnet-4-5-thinking": {
-          "name": "Claude Sonnet 4.5 Thinking (Antigravity)",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "claude-opus-4-5-thinking": {
-          "name": "Claude Opus 4.5 Thinking (Antigravity)",
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gpt-oss-120b-medium": {
-          "name": "GPT-OSS 120B Medium (Antigravity)",
-          "limit": {
-            "context": 131072,
-            "output": 32768
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        }
-      }
-    },
-    "vibedev": {
-      "api": "openai",
-      "options": {
-        "baseURL": "https://api.vibe-dev.web.id/v1",
-        "apiKey": "{env:VIBEDEV_API_KEY}"
-      },
-      "models": {
-        "claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5 (VibeDev)",
-          "options": {
-            "thinking": {
-              "budgetTokens": 16000
-            }
-          },
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "claude-sonnet-4-5-thinking": {
-          "name": "Claude Sonnet 4.5 Thinking (VibeDev)",
-          "options": {
-            "thinking": {
-              "budgetTokens": 16000
-            }
-          },
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "claude-opus-4-5-thinking": {
-          "name": "Claude Opus 4.5 Thinking (VibeDev)",
-          "options": {
-            "thinking": {
-              "budgetTokens": 32000
-            }
-          },
-          "limit": {
-            "context": 200000,
-            "output": 64000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-2.5-flash": {
-          "name": "Gemini 2.5 Flash (VibeDev)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash (VibeDev)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "gemini-3-pro-preview": {
-          "name": "Gemini 3 Pro (VibeDev)",
-          "variants": {
-            "high": {
-              "id": "gemini-3-pro-preview"
-            },
-            "low": {
-              "id": "gemini-3-flash-preview"
-            }
-          },
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        }
-      }
-    }
-  },
+  "provider": {},
   "mcp": {
     "context7": {
       "type": "remote",
@@ -420,21 +17,19 @@
         "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
       }
     },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
     "shannon-thinking": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "server-shannon-thinking@latest"
-      ],
+      "command": ["npx", "-y", "server-shannon-thinking@latest"],
       "enabled": true
     },
     "sequential-thinking-ultra": {
       "type": "local",
-      "command": [
-        "node",
-        "/YOUR_PATH_TO/opencode/mcp/sequential-thinking-ultra/dist/index.js"
-      ],
+      "command": ["node", "/Users/YOUR_USER/.opencode/mcp/Sequential-thinking-ultra-mcp/dist/index.js"],
       "enabled": true,
       "environment": {
         "ULTRA_THINK_AUTO_LABEL": "true",
@@ -447,10 +42,7 @@
     },
     "mcp-reasoner": {
       "type": "local",
-      "command": [
-        "node",
-        "/YOUR_PATH_TO/opencode/mcp/mcp-reasoner/dist/index.js"
-      ],
+      "command": ["node", "/Users/YOUR_USER/.opencode/mcp/mcp-reasoner/dist/index.js"],
       "enabled": true,
       "environment": {
         "OPENROUTER_API_KEY": "{env:OPENROUTER_API_KEY}"
@@ -458,18 +50,7 @@
     },
     "clear-thought": {
       "type": "local",
-      "command": [
-        "node",
-        "/YOUR_PATH_TO/opencode/mcp/clear-thought-mcp-server/dist/index.js"
-      ],
-      "enabled": true
-    },
-    "atom-of-thoughts": {
-      "type": "local",
-      "command": [
-        "node",
-        "/YOUR_PATH_TO/opencode/mcp/atom-of-thoughts/build/index.js"
-      ],
+      "command": ["node", "/Users/YOUR_USER/.opencode/mcp/clear-thought-mcp-server/dist/index.js"],
       "enabled": true
     },
     "exa": {
@@ -480,14 +61,34 @@
         "EXA_API_KEY": "{env:EXA_API_KEY}"
       }
     },
+    "atom-of-thoughts": {
+      "type": "local",
+      "command": ["node", "/Users/YOUR_USER/.opencode/mcp/MCP_Atom_of_Thoughts/build/index.js"],
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "prisma-local": {
+      "type": "local",
+      "command": ["npx", "-y", "prisma", "mcp"],
+      "enabled": true
+    },
+    "prisma-remote": {
+      "type": "remote",
+      "url": "https://mcp.prisma.io/mcp",
+      "enabled": true
+    },
+    "next-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "next-devtools-mcp@latest"],
+      "enabled": true
+    },
     "linear": {
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-remote",
-        "https://mcp.linear.app/mcp"
-      ],
+      "command": ["npx", "-y", "mcp-remote", "https://mcp.linear.app/mcp"],
       "enabled": true,
       "timeout": 30000
     }

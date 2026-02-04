@@ -2,26 +2,26 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "google_auth": false,
   "agents": {
-    "Sisyphus": {
-      "model": "proxycli-indo-kuli/claude-opus-4-5-thinking"
+    "sisyphus": {
+      "model": "zai-coding-plan/glm-4.7"
     },
     "librarian": {
-      "model": "opencode/glm-4.7"
+      "model": "zai-coding-plan/glm-4.7"
     },
     "oracle": {
-      "model": "proxycli-indo-kuli/claude-opus-4-5-thinking"
+      "model": "zai-coding-plan/glm-4.7"
     },
     "frontend-ui-ux-engineer": {
-      "model": "proxycli-indo-kuli/gemini-3-pro-preview"
+      "model": "zai-coding-plan/glm-4.7"
     },
     "document-writer": {
-      "model": "proxycli-indo-kuli/gemini-3-flash-preview"
+      "model": "zai-coding-plan/glm-4.7"
     },
     "multimodal-looker": {
-      "model": "proxycli-indo-kuli/gemini-3-pro-image-preview"
+      "model": "zai-coding-plan/glm-4.7"
     },
     "explore": {
-      "model": "opencode/glm-4.7"
+      "model": "zai-coding-plan/glm-4.7"
     }
   }
 }
